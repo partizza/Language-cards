@@ -1,0 +1,5 @@
+el coche=a car
+la casa = a hause
+hola=hi
+el perro = a dog
+el gato = a cat
