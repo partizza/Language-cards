@@ -1,5 +1,7 @@
 el coche=a car
 la casa = a hause
-hola=hi
+hola;oiga=hi;hello
 el perro = a dog
 el gato = a cat
+la manzana = a apple
+la manzana = a block
