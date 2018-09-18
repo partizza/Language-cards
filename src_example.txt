@@ -3,5 +3,5 @@ la casa = a hause
 hola;oiga=hi;hello
 el perro = a dog
 el gato = a cat
-la manzana = a apple
+la manzana = an apple
 la manzana = a block

@@ -15,17 +15,29 @@ run{
 }
 
 jar {
+    // executable jar
     manifest {
         attributes 'Main-Class': mainClassName
+    }
+
+    // including all dependencies
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
 dependencies {
-    // This dependency is found on compile classpath of this component and consumers.
     compile 'com.google.guava:guava:23.0'
+
+    // slf4j & log4j
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.slf4j:slf4j-log4j12:1.7.25'
+    compile 'org.apache.logging.log4j:log4j-core:2.11.1'
 
     // Use JUnit test framework
     testCompile 'junit:junit:4.12'
+
+
 }
 
 // In this section you declare where to find the dependencies of your project

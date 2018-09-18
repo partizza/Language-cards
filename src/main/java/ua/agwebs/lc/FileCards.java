@@ -1,40 +1,32 @@
 package ua.agwebs.lc;
 
-import java.io.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import ua.agwebs.lc.data.parsers.DataParser;
+
 import java.util.*;
 
-public class SimpleCards extends CardBox {
+public class FileCards extends CardBox {
 
-    static final private String LANG_SEPARATOR = "=";
-    static final private String VAL_SEPARATOR = ";";
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileCards.class);
 
-    private File src;
+    private static final String VAL_SEPARATOR = ";";
+
     private Map<String, Set<String>> carts;
+    private DataParser dataParser;
 
-    public SimpleCards(File src) {
-        this.src = src;
+    public FileCards(DataParser parser) {
+        this.dataParser = parser;
     }
 
     @Override
     protected void initData() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(src))) {
-            carts = new HashMap<>();
-            String str = null;
-            while ((str = reader.readLine()) != null) {
-                String[] split = str.split(LANG_SEPARATOR);
-                String[] keys = split[0].split(VAL_SEPARATOR);
-                String[] values = split[1].split(VAL_SEPARATOR);
-                for (String k : keys) {
-                    k = k.trim();
-                    Set<String> set = carts.getOrDefault(k.trim(), new TreeSet<>());
-                    for (String v : values) set.add(v.trim());
-                    carts.put(k, set);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        } catch (IOException e) {
-            System.out.println(e);
+        try {
+            LOGGER.info("info lvl");
+            LOGGER.debug("debug lvl");
+            carts = dataParser.parse();
+        } catch (Exception e) {
+            LOGGER.error("Can't parse a file",e);
         }
     }
 
