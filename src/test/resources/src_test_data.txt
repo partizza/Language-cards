@@ -1,0 +1,7 @@
+  la casa = a hause
+hola;oiga=hi;hello
+
+la manzana   = an apple
+  la manzana = an apple
+la manzana = a block
+

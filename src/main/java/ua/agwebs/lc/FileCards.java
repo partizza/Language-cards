@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.agwebs.lc.data.parsers.DataParser;
 
+import java.io.IOException;
 import java.util.*;
 
 public class FileCards extends CardBox {
@@ -22,11 +23,10 @@ public class FileCards extends CardBox {
     @Override
     protected void initData() {
         try {
-            LOGGER.info("info lvl");
-            LOGGER.debug("debug lvl");
             carts = dataParser.parse();
-        } catch (Exception e) {
-            LOGGER.error("Can't parse a file",e);
+        } catch (IOException e) {
+            LOGGER.error("Can't parse a file", e);
+            throw new RuntimeException("Can't init data.", e);
         }
     }
 
