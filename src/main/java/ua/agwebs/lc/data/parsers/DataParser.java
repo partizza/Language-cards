@@ -6,5 +6,5 @@ import java.util.Set;
 
 public interface DataParser {
 
-    Map<String, Set<String>> parse() throws IOException;
+    Map<String, Set<String>> parse();
 }

@@ -31,7 +31,7 @@ public class CsvDataParserTest {
     }
 
     @Test
-    public void testEmptyFile() throws IOException {
+    public void testEmptyFile() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         CsvDataParser csvDataParser = new CsvDataParser(new File(classLoader.getResource(SRC_EMPTY_FILE_NAME).getFile()), "", "");
         Map<String, Set<String>> result = csvDataParser.parse();
@@ -41,7 +41,7 @@ public class CsvDataParserTest {
     }
 
     @Test
-    public void testOnExampleData() throws IOException {
+    public void testOnExampleData() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         CsvDataParser csvDataParser = new CsvDataParser(new File(classLoader.getResource(SRC_TEST_DATA_FILE_NAME).getFile()), "=", ";");
         Map<String, Set<String>> result = csvDataParser.parse();
@@ -51,7 +51,7 @@ public class CsvDataParserTest {
     }
 
     @Test
-    public void testOnExampleDataWithDuplication() throws IOException {
+    public void testOnExampleDataWithDuplication() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         CsvDataParser csvDataParser = new CsvDataParser(new File(classLoader.getResource(SRC_TEST_DATA_FILE_WITH_DUPL_NAME).getFile()), "=", ";");
         Map<String, Set<String>> result = csvDataParser.parse();

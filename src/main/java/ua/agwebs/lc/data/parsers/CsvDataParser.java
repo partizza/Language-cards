@@ -29,7 +29,7 @@ public class CsvDataParser implements DataParser {
     }
 
     @Override
-    public Map<String, Set<String>> parse() throws IOException {
+    public Map<String, Set<String>> parse() {
         try (BufferedReader reader = new BufferedReader(new FileReader(srcFile))) {
             Map<String, Set<String>> carts = new HashMap<>();
 
@@ -56,6 +56,9 @@ public class CsvDataParser implements DataParser {
             }
 
             return carts;
+        } catch (IOException e) {
+            LOGGER.error("Can't parse a file", e);
+            throw new RuntimeException("Can't parse data source.", e);
         }
     }
 

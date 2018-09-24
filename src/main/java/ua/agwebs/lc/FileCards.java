@@ -22,12 +22,7 @@ public class FileCards extends CardBox {
 
     @Override
     protected void initData() {
-        try {
             carts = dataParser.parse();
-        } catch (IOException e) {
-            LOGGER.error("Can't parse a file", e);
-            throw new RuntimeException("Can't init data.", e);
-        }
     }
 
     @Override
