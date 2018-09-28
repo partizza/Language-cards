@@ -40,6 +40,12 @@ public class CsvDataParserTest {
         assertTrue(result.isEmpty());
     }
 
+    @Test(expected = RuntimeException.class)
+    public void testNonExitingFile(){
+        CsvDataParser csvDataParser = new CsvDataParser(new File("nameOfNonExitingFile.12342450"), "", "");
+        Map<String, Set<String>> result = csvDataParser.parse();
+    }
+
     @Test
     public void testOnExampleData() {
         ClassLoader classLoader = this.getClass().getClassLoader();

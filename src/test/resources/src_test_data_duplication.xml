@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CardsData>
+    <cards>
+        <card>
+            <expression>   hola  </expression>
+            <translation>
+                <value>hi</value>
+                <value>hello</value>
+            </translation>
+        </card>
+        <card>
+            <expression>la manzana</expression>
+            <translation>
+                <value>an apple</value>
+                <value>an apple</value>
+                <value>a block</value>
+            </translation>
+        </card>
+        <card>
+            <expression>   hola  </expression>
+            <translation>
+                <value>hi</value>
+                <value>hello</value>
+            </translation>
+        </card>
+    </cards>
+</CardsData>

@@ -18,6 +18,7 @@ public class XmlDataParser implements DataParser {
     private File srcFile;
 
     public XmlDataParser(File srcFile) {
+        if(srcFile == null) throw new IllegalArgumentException("srcFile can't be null.");
         this.srcFile = srcFile;
     }
 
