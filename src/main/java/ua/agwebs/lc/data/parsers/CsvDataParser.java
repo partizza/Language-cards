@@ -2,7 +2,6 @@ package ua.agwebs.lc.data.parsers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ua.agwebs.lc.FileCards;
 
 import java.io.*;
 import java.util.HashMap;

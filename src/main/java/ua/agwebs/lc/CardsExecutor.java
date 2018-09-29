@@ -1,6 +1,6 @@
 package ua.agwebs.lc;
 
-public abstract class CardBox {
+public abstract class CardsExecutor {
 
     /**
      * Template method

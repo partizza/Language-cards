@@ -4,19 +4,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.agwebs.lc.data.parsers.DataParser;
 
-import java.io.IOException;
 import java.util.*;
 
-public class FileCards extends CardBox {
+public class FileCardsExecutor extends CardsExecutor {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileCards.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileCardsExecutor.class);
 
     private static final String VAL_SEPARATOR = ";";
 
     private Map<String, Set<String>> carts;
     private DataParser dataParser;
 
-    public FileCards(DataParser parser) {
+    public FileCardsExecutor(DataParser parser) {
         this.dataParser = parser;
     }
 
