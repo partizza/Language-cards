@@ -2,12 +2,10 @@ package ua.agwebs.lc.data.parsers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ua.agwebs.lc.decks.CardDeck;
+import ua.agwebs.lc.decks.MultiValueCardDeck;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
 
 public class CsvDataParser implements DataParser {
 
@@ -28,9 +26,9 @@ public class CsvDataParser implements DataParser {
     }
 
     @Override
-    public Map<String, Set<String>> parse() {
+    public CardDeck<String, String> parse() {
         try (BufferedReader reader = new BufferedReader(new FileReader(srcFile))) {
-            Map<String, Set<String>> carts = new HashMap<>();
+            MultiValueCardDeck carts = new MultiValueCardDeck();
 
             String str = null;
             while ((str = reader.readLine()) != null) {
@@ -46,11 +44,7 @@ public class CsvDataParser implements DataParser {
                 String[] values = split[1].split(valSeparator);
 
                 for (String k : keys) {
-                    k = k.trim();
-                    Set<String> set = carts.getOrDefault(k.trim(), new TreeSet<>());
-                    for (String v : values) set.add(v.trim());
-                    carts.put(k, set);
-                    LOGGER.trace("Parsed data: key={}; values={}", k, set);
+                    for (String v : values) carts.put(k.trim(), v.trim());
                 }
             }
 

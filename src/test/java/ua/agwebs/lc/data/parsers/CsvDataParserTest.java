@@ -1,11 +1,9 @@
 package ua.agwebs.lc.data.parsers;
 
 import org.junit.Test;
+import ua.agwebs.lc.decks.CardDeck;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -34,38 +32,38 @@ public class CsvDataParserTest {
     public void testEmptyFile() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         CsvDataParser csvDataParser = new CsvDataParser(new File(classLoader.getResource(SRC_EMPTY_FILE_NAME).getFile()), "", "");
-        Map<String, Set<String>> result = csvDataParser.parse();
+        CardDeck<String, String> deck = csvDataParser.parse();
 
-        assertNotNull(result);
-        assertTrue(result.isEmpty());
+        assertNotNull(deck);
+        assertTrue(deck.getKeys().isEmpty());
     }
 
     @Test(expected = RuntimeException.class)
-    public void testNonExitingFile(){
+    public void testNonExitingFile() {
         CsvDataParser csvDataParser = new CsvDataParser(new File("nameOfNonExitingFile.12342450"), "", "");
-        Map<String, Set<String>> result = csvDataParser.parse();
+        CardDeck<String, String> result = csvDataParser.parse();
     }
 
     @Test
     public void testOnExampleData() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         CsvDataParser csvDataParser = new CsvDataParser(new File(classLoader.getResource(SRC_TEST_DATA_FILE_NAME).getFile()), "=", ";");
-        Map<String, Set<String>> result = csvDataParser.parse();
+        CardDeck<String, String> result = csvDataParser.parse();
 
         assertNotNull(result);
-        assertTrue("Unexpected number of key-value pair.",result.size() == 4);
+        assertTrue("Unexpected number of key-value pair.", result.getKeys().size() == 4);
     }
 
     @Test
     public void testOnExampleDataWithDuplication() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         CsvDataParser csvDataParser = new CsvDataParser(new File(classLoader.getResource(SRC_TEST_DATA_FILE_WITH_DUPL_NAME).getFile()), "=", ";");
-        Map<String, Set<String>> result = csvDataParser.parse();
+        CardDeck<String, String> result = csvDataParser.parse();
 
         assertNotNull(result);
-        assertTrue("Unexpected number of key-value pair.",result.size() == 2);
-        for(Map.Entry<String, Set<String>> entry : result.entrySet()){
-            assertTrue("Unexpected number of values ",entry.getValue().size() == 2);
+        assertTrue("Unexpected number of key-value pair.", result.getKeys().size() == 2);
+        for (String k : result.getKeys()) {
+            assertTrue("Unexpected number of values ", result.getValues(k).size() == 2);
         }
     }
 }

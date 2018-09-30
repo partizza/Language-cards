@@ -1,10 +1,10 @@
 package ua.agwebs.lc.data.parsers;
 
+import ua.agwebs.lc.decks.CardDeck;
+import ua.agwebs.lc.decks.MultiValueCardDeck;
+
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 @XmlRootElement(name="CardsData")
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -12,13 +12,13 @@ public class XmlCards {
 
     @XmlJavaTypeAdapter(XmlCardsMapAdapter.class)
     @XmlElement(name="cards")
-    private Map<String, Set<String>> cards = new HashMap<>();
+    private CardDeck<String,String> cards = new MultiValueCardDeck();
 
-    public Map<String, Set<String>> getCards() {
+    public CardDeck<String,String> getCards() {
         return cards;
     }
 
-    public void setCards(Map<String, Set<String>> cards) {
+    public void setCards(CardDeck<String,String> cards) {
         this.cards = cards;
     }
 

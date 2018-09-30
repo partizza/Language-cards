@@ -1,10 +1,9 @@
 package ua.agwebs.lc.data.parsers;
 
 import org.junit.Test;
+import ua.agwebs.lc.decks.CardDeck;
 
 import java.io.File;
-import java.util.Map;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -38,32 +37,32 @@ public class XmlDataParserTest {
     public void testEmptyXmlFile() {
         ClassLoader classLoader = this.getClass().getClassLoader();
         XmlDataParser xmlDataParser = new XmlDataParser(new File(classLoader.getResource(SRC_FILE_WITHOUT_DATA_NAME).getFile()));
-        Map<String, Set<String>> result = xmlDataParser.parse();
+        CardDeck<String, String> result = xmlDataParser.parse();
 
         assertNotNull(result);
-        assertTrue(result.isEmpty());
+        assertTrue(result.getKeys().isEmpty());
     }
 
     @Test
     public void testOnExampleData(){
         ClassLoader classLoader = this.getClass().getClassLoader();
         XmlDataParser xmlDataParser = new XmlDataParser(new File(classLoader.getResource(SRC_TEST_DATA_FILE_NAME).getFile()));
-        Map<String, Set<String>> result = xmlDataParser.parse();
+        CardDeck<String, String> result = xmlDataParser.parse();
 
         assertNotNull(result);
-        assertTrue("Unexpected number of key-value pair.",result.size() == 4);
+        assertTrue("Unexpected number of key-value pair.",result.getKeys().size() == 4);
     }
 
     @Test
     public void testOnExampleDataWithDuplication(){
         ClassLoader classLoader = this.getClass().getClassLoader();
         XmlDataParser xmlDataParser = new XmlDataParser(new File(classLoader.getResource(SRC_TEST_DATA_FILE_WITH_DUPL_NAME).getFile()));
-        Map<String, Set<String>> result = xmlDataParser.parse();
+        CardDeck<String, String> result = xmlDataParser.parse();
 
         assertNotNull(result);
-        assertTrue("Unexpected number of key-value pair.",result.size() == 2);
-        for(Map.Entry<String, Set<String>> entry : result.entrySet()){
-            assertTrue("Unexpected number of values ",entry.getValue().size() == 2);
+        assertTrue("Unexpected number of key-value pair.",result.getKeys().size() == 2);
+        for(String k : result.getKeys()){
+            assertTrue("Unexpected number of values ",result.getValues(k).size() == 2);
         }
     }
 }

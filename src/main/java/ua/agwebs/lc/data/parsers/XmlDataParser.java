@@ -2,13 +2,12 @@ package ua.agwebs.lc.data.parsers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ua.agwebs.lc.decks.CardDeck;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.Map;
-import java.util.Set;
 
 public class XmlDataParser implements DataParser {
 
@@ -22,7 +21,7 @@ public class XmlDataParser implements DataParser {
     }
 
     @Override
-    public Map<String, Set<String>> parse() {
+    public CardDeck<String,String> parse() {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(XmlCards.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();

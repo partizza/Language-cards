@@ -3,6 +3,7 @@ package ua.agwebs.lc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ua.agwebs.lc.data.parsers.DataParser;
+import ua.agwebs.lc.decks.CardDeck;
 
 import java.util.*;
 
@@ -12,7 +13,7 @@ public class FileCardsExecutor extends CardsExecutor {
 
     private static final String VAL_SEPARATOR = ";";
 
-    private Map<String, Set<String>> carts;
+    private CardDeck<String, String> cards;
     private DataParser dataParser;
 
     public FileCardsExecutor(DataParser parser) {
@@ -21,20 +22,22 @@ public class FileCardsExecutor extends CardsExecutor {
 
     @Override
     protected void initData() {
-            carts = dataParser.parse();
+        cards = dataParser.parse();
     }
 
     @Override
     protected void drill() {
         try (Scanner scanner = new Scanner(System.in)) {
-            while (!carts.isEmpty()) {
-                Iterator<Map.Entry<String, Set<String>>> iterator = carts.entrySet().iterator();
+            Set<String> kSet = new HashSet<>(cards.getKeys());
+            while (!kSet.isEmpty()) {
+                Iterator<String> iterator = kSet.iterator();
                 while (iterator.hasNext()) {
                     System.out.println();
 
-                    Map.Entry<String, Set<String>> next = iterator.next();
+                    String next = iterator.next();
+                    Set<String> values = cards.getValues(next);
                     int size = 0;
-                    System.out.println(next.getKey() + ((size = next.getValue().size()) > 1 ? " (" + size + ") " : ""));
+                    System.out.println(next + ((size = values.size()) > 1 ? " (" + size + ") " : ""));
                     String input = scanner.nextLine();
 
                     String[] inputs = input.split(VAL_SEPARATOR);
@@ -49,7 +52,7 @@ public class FileCardsExecutor extends CardsExecutor {
 
                     boolean isCorrect = true;
                     for (String ans : input.split(VAL_SEPARATOR)) {
-                        if (next.getValue().contains(ans.trim())) continue;
+                        if (values.contains(ans.trim())) continue;
                         else {
                             isCorrect = false;
                             System.out.println("NOT CORRECT !!!");
