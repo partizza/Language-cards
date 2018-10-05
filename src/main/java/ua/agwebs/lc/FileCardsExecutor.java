@@ -7,7 +7,7 @@ import ua.agwebs.lc.decks.CardDeck;
 
 import java.util.*;
 
-public class FileCardsExecutor extends CardsExecutor {
+class FileCardsExecutor extends CardsExecutor {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FileCardsExecutor.class);
 

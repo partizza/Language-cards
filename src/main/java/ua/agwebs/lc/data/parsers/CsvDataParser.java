@@ -84,4 +84,18 @@ public class CsvDataParser implements DataParser {
                 ", srcFile=" + srcFile +
                 '}';
     }
+
+    public static class CsvDataParserTestClass {
+        public static String getLangSeparator(CsvDataParser instance) {
+            return instance.langSeparator;
+        }
+
+        public static String getValSeparator(CsvDataParser instance) {
+            return instance.valSeparator;
+        }
+
+        public static String getFileName(CsvDataParser instance) {
+            return instance.srcFile.getName();
+        }
+    }
 }

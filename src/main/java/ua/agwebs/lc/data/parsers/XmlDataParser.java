@@ -16,12 +16,12 @@ public class XmlDataParser implements DataParser {
     private File srcFile;
 
     public XmlDataParser(File srcFile) {
-        if(srcFile == null) throw new IllegalArgumentException("srcFile can't be null.");
+        if (srcFile == null) throw new IllegalArgumentException("srcFile can't be null.");
         this.srcFile = srcFile;
     }
 
     @Override
-    public CardDeck<String,String> parse() {
+    public CardDeck<String, String> parse() {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(XmlCards.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
@@ -53,5 +53,11 @@ public class XmlDataParser implements DataParser {
         return "XmlDataParser{" +
                 "srcFile=" + srcFile +
                 '}';
+    }
+
+    public static class XmlDataParserTestClass {
+        public static String getFileName(XmlDataParser instace){
+            return instace.srcFile.getName();
+        }
     }
 }
