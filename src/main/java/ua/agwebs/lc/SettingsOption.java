@@ -1,7 +1,10 @@
 package ua.agwebs.lc;
 
 public enum SettingsOption {
-    FORMAT("file format (e.g. csv, xml)"), LSPR("language separator (e.g. =, ->)"), VSPR("word or phrase separator (e.g. ;)");
+    FORMAT("file format (e.g. csv, xml)"),
+    LSPR("language separator (e.g. =, ->)"),
+    VSPR("word or phrase separator (e.g. ;)"),
+    CSPR("console input separator (e.g. ;)");
 
     private String desc;
 
@@ -12,5 +15,9 @@ public enum SettingsOption {
 
     public String getDesc() {
         return desc;
+    }
+
+    public String getNameInLowerCase(){
+        return this.name().toLowerCase();
     }
 }
