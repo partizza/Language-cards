@@ -9,6 +9,12 @@ import java.util.Set;
 
 public class SimpleConsoleSimulator implements Simulator {
 
+    protected static final String NOT_ALL_VAL = "NOT ALL VALUES !!!";
+    protected static final String TOO_MUCH_VAL = "TOO MUCH VALUES !!!";
+    protected static final String NOT_CORRECT = "NOT CORRECT !!!";
+    protected static final String CORRECT = "CORRECT !!!";
+
+
     private final String delimiter;
 
     public SimpleConsoleSimulator(String delimiter) {
@@ -34,11 +40,11 @@ public class SimpleConsoleSimulator implements Simulator {
 
                     String[] inputs = input.split(delimiter);
                     if (inputs.length < size) {
-                        System.out.println("NOT ALL VALUES !!!");
+                        System.out.println(NOT_ALL_VAL);
                         continue;
                     }
                     if (inputs.length > size) {
-                        System.out.println("TOO MUCH VALUES !!!");
+                        System.out.println(TOO_MUCH_VAL);
                         continue;
                     }
 
@@ -47,14 +53,14 @@ public class SimpleConsoleSimulator implements Simulator {
                         if (values.contains(ans.trim())) continue;
                         else {
                             isCorrect = false;
-                            System.out.println("NOT CORRECT !!!");
+                            System.out.println(NOT_CORRECT);
                             break;
                         }
                     }
 
                     if (isCorrect) {
                         iterator.remove();
-                        System.out.println("CORRECT !!!");
+                        System.out.println(CORRECT);
                     }
                 }
             }
